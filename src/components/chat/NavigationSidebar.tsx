@@ -1,23 +1,35 @@
-import { MessageSquare, Users, Star, Calendar, Files, LayoutDashboard, Bot, Settings } from 'lucide-react';
+import { MessageSquare, Users, Star, Phone, Files, Bot, Settings } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const navigationItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', active: false },
-  { icon: MessageSquare, label: 'Messages', active: true, badge: 8 },
-  { icon: Users, label: 'Groups', active: false },
-  { icon: Star, label: 'Favourites', active: false },
-  { icon: Calendar, label: 'Calendar', active: false },
-  { icon: Files, label: 'Files', active: false },
+  { icon: MessageSquare, label: 'Messages', path: '/', badge: 8 },
+  { icon: Users, label: 'Groups', path: '/groups' },
+  { icon: Star, label: 'Favourites', path: '/favourites' },
+  { icon: Phone, label: 'Calls', path: '/calls' },
+  { icon: Files, label: 'Files', path: '/files' },
 ];
 
 export const NavigationSidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <TooltipProvider>
       <div className="w-20 gradient-sidebar border-r border-sidebar-border flex flex-col items-center py-6 shadow-elegant">
         {/* AI Chat Logo */}
-        <div className="mb-8 p-3 gradient-primary rounded-xl shadow-glow animate-bounce-gentle">
+        <div 
+          className="mb-8 p-3 gradient-primary rounded-xl shadow-glow animate-bounce-gentle cursor-pointer"
+          onClick={() => navigate('/')}
+        >
           <Bot className="h-7 w-7 text-primary-foreground" />
         </div>
 
@@ -30,8 +42,9 @@ export const NavigationSidebar = () => {
                   <Button
                     variant="ghost"
                     size="icon"
+                    onClick={() => handleNavigation(item.path)}
                     className={`h-12 w-12 rounded-xl transition-all duration-300 ${
-                      item.active
+                      isActive(item.path)
                         ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-glow transform scale-110'
                         : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:scale-105'
                     }`}
@@ -58,7 +71,12 @@ export const NavigationSidebar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-12 w-12 rounded-xl text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-300 hover:scale-105 mb-4"
+              onClick={() => navigate('/settings')}
+              className={`h-12 w-12 rounded-xl transition-all duration-300 hover:scale-105 mb-4 ${
+                isActive('/settings')
+                  ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-glow'
+                  : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+              }`}
             >
               <Settings className="h-6 w-6" />
             </Button>

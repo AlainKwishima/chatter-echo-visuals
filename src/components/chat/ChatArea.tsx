@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Paperclip, Smile, Phone, Video, MoreHorizontal, Heart, Reply, Image, File, Mic, ThumbsUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -84,6 +85,7 @@ const teamMembers = [
 const quickReactions = ['👍', '❤️', '😊', '🔥', '💯', '🚀'];
 
 export const ChatArea = ({ activeChat }: ChatAreaProps) => {
+  const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
@@ -172,7 +174,12 @@ export const ChatArea = ({ activeChat }: ChatAreaProps) => {
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:scale-110 transition-transform duration-300">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="hover:scale-110 transition-transform duration-300"
+                  onClick={() => navigate('/video-call')}
+                >
                   <Video className="h-5 w-5" />
                 </Button>
               </TooltipTrigger>
