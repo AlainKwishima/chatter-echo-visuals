@@ -2,6 +2,7 @@ import { MessageSquare, Users, Star, Phone, Files, Bot, Settings } from 'lucide-
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const navigationItems = [
@@ -72,6 +73,18 @@ export const NavigationSidebar = ({ onToggle }: NavigationSidebarProps) => {
             </Tooltip>
           ))}
         </nav>
+
+        {/* Theme Toggle */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="mb-2">
+              <ThemeToggle />
+            </div>
+          </TooltipTrigger>
+          <TooltipContent side="right" className="bg-popover border-border">
+            <p>Toggle Theme</p>
+          </TooltipContent>
+        </Tooltip>
 
         {/* Settings */}
         <Tooltip>

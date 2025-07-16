@@ -196,7 +196,7 @@ export const ContactsSidebar = ({ activeChat, onChatSelect }: ContactsSidebarPro
 
   return (
     <TooltipProvider>
-      <div className="w-96 bg-card border-l border-border flex flex-col shadow-elegant">
+      <div className="w-full h-full bg-card border-l border-border flex flex-col shadow-elegant">
         {/* Header */}
         <div className="p-6 border-b border-border bg-gradient-to-r from-card to-muted/20">
           <div className="flex items-center justify-between mb-6">

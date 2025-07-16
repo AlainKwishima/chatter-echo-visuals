@@ -129,7 +129,7 @@ export const ChatArea = ({ activeChat }: ChatAreaProps) => {
     <TooltipProvider>
       <div className="flex-1 flex flex-col bg-background relative">
         {/* Chat Header */}
-        <div className="border-b border-border p-4 flex items-center justify-between bg-card shadow-elegant">
+        <div className="border-b border-border p-4 pl-16 md:pl-4 flex items-center justify-between bg-card shadow-elegant">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="flex -space-x-3">
