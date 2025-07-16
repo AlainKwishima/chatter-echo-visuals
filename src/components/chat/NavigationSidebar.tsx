@@ -12,12 +12,20 @@ const navigationItems = [
   { icon: Files, label: 'Files', path: '/files' },
 ];
 
-export const NavigationSidebar = () => {
+interface NavigationSidebarProps {
+  onToggle?: () => void;
+}
+
+export const NavigationSidebar = ({ onToggle }: NavigationSidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleNavigation = (path: string) => {
     navigate(path);
+    // Close mobile menu after navigation
+    if (onToggle) {
+      onToggle();
+    }
   };
 
   const isActive = (path: string) => location.pathname === path;
@@ -71,7 +79,7 @@ export const NavigationSidebar = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate('/settings')}
+              onClick={() => handleNavigation('/settings')}
               className={`h-12 w-12 rounded-xl transition-all duration-300 hover:scale-105 mb-4 ${
                 isActive('/settings')
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-glow'

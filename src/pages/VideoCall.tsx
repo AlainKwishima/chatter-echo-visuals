@@ -39,7 +39,7 @@ const VideoCall = () => {
   const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   return (
-    <div className="h-screen bg-black flex flex-col relative overflow-hidden">
+    <div className="h-full bg-black flex flex-col relative overflow-hidden">
       {/* Video Grid */}
       <div className="flex-1 relative">
         {/* Main Speaker View */}

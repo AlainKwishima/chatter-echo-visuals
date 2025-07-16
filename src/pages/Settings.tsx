@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 
 const Settings = () => {
   return (
-    <div className="h-screen gradient-main flex flex-col">
+    <div className="h-full gradient-main flex flex-col">
       {/* Header */}
       <div className="border-b border-chat-border p-6">
         <div className="flex items-center gap-3">

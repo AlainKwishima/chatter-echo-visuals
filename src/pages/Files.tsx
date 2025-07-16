@@ -83,7 +83,7 @@ const formatFileSize = (size: string) => size;
 
 const Files = () => {
   return (
-    <div className="h-screen gradient-main flex flex-col">
+    <div className="h-full gradient-main flex flex-col">
       {/* Header */}
       <div className="border-b border-chat-border p-6">
         <div className="flex items-center justify-between mb-4">
