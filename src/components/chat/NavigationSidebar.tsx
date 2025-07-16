@@ -12,20 +12,19 @@ const navigationItems = [
   { icon: Files, label: 'Files', path: '/files' },
 ];
 
-export const NavigationSidebar = ({ onClose }: { onClose?: () => void }) => {
+export const NavigationSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    onClose?.(); // Close mobile menu when navigating
   };
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
     <TooltipProvider>
-      <div className="w-20 h-full gradient-sidebar border-r border-sidebar-border flex flex-col items-center py-6 shadow-elegant">
+      <div className="w-20 gradient-sidebar border-r border-sidebar-border flex flex-col items-center py-6 shadow-elegant">
         {/* AI Chat Logo */}
         <div 
           className="mb-8 p-3 gradient-primary rounded-xl shadow-glow animate-bounce-gentle cursor-pointer"
