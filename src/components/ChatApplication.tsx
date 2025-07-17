@@ -24,7 +24,7 @@ export const ChatApplication = () => {
   };
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-background overflow-hidden">
       {/* Navigation Sidebar */}
       <div className={`
         fixed md:relative z-50 h-full transition-transform duration-300 ease-in-out
@@ -42,9 +42,9 @@ export const ChatApplication = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex min-w-0">
+      <div className="flex-1 flex min-w-0 max-w-full overflow-hidden">
         {/* Mobile header with hamburger menu */}
-        <div className="md:hidden fixed top-0 left-0 right-0 z-30 flex items-center justify-between p-4 border-b border-sidebar-border bg-card shadow-elegant">
+        <div className="md:hidden fixed top-0 left-0 right-0 z-30 flex-shrink-0 flex items-center justify-between p-4 border-b border-sidebar-border bg-card shadow-elegant">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 rounded-lg hover:bg-sidebar-accent transition-colors"
@@ -58,15 +58,15 @@ export const ChatApplication = () => {
         </div>
 
         {/* Chat Content - responsive layout */}
-        <div className="flex flex-1 pt-16 md:pt-0">
+        <div className="flex flex-1 pt-16 md:pt-0 min-h-0 overflow-hidden">
           {/* Contacts Sidebar - show/hide based on screen size and selection */}
           <div className={`
             ${isMobile 
               ? showContactsList 
                 ? 'w-full' 
                 : 'hidden'
-              : 'w-96'
-            } transition-all duration-300
+              : 'w-96 flex-shrink-0'
+            } transition-all duration-300 overflow-hidden
           `}>
             <ContactsSidebar 
               activeChat={activeChat} 
@@ -80,8 +80,8 @@ export const ChatApplication = () => {
               ? showContactsList 
                 ? 'hidden' 
                 : 'w-full'
-              : 'flex-1'
-            } transition-all duration-300 relative
+              : 'flex-1 min-w-0'
+            } transition-all duration-300 relative overflow-hidden
           `}>
             {/* Back button for mobile */}
             {isMobile && !showContactsList && (

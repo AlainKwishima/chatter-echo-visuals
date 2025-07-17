@@ -33,21 +33,21 @@ export const NavigationSidebar = ({ onToggle }: NavigationSidebarProps) => {
 
   return (
     <TooltipProvider>
-      <div className="w-20 gradient-sidebar border-r border-sidebar-border flex flex-col items-center py-6 shadow-elegant">
+      <div className="w-20 h-full gradient-sidebar border-r border-sidebar-border flex flex-col items-center py-4 shadow-elegant overflow-hidden">
         {/* AI Chat Logo */}
         <div 
-          className="mb-8 p-3 gradient-primary rounded-xl shadow-glow animate-bounce-gentle cursor-pointer"
+          className="mb-6 p-3 gradient-primary rounded-xl shadow-glow animate-bounce-gentle cursor-pointer flex-shrink-0"
           onClick={() => navigate('/')}
         >
           <Bot className="h-7 w-7 text-primary-foreground" />
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex flex-col gap-3 flex-1">
+        <nav className="flex flex-col gap-2 flex-1 overflow-y-auto scrollbar-none">
           {navigationItems.map((item, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
-                <div className="relative animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="relative animate-fade-in flex-shrink-0" style={{ animationDelay: `${index * 0.1}s` }}>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -74,46 +74,49 @@ export const NavigationSidebar = ({ onToggle }: NavigationSidebarProps) => {
           ))}
         </nav>
 
-        {/* Theme Toggle */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className="mb-2">
-              <ThemeToggle />
-            </div>
-          </TooltipTrigger>
-          <TooltipContent side="right" className="bg-popover border-border">
-            <p>Toggle Theme</p>
-          </TooltipContent>
-        </Tooltip>
+        {/* Bottom Controls */}
+        <div className="flex flex-col gap-2 flex-shrink-0">
+          {/* Theme Toggle */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div>
+                <ThemeToggle />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="right" className="bg-popover border-border">
+              <p>Toggle Theme</p>
+            </TooltipContent>
+          </Tooltip>
 
-        {/* Settings */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => handleNavigation('/settings')}
-              className={`h-12 w-12 rounded-xl transition-all duration-300 hover:scale-105 mb-4 ${
-                isActive('/settings')
-                  ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-glow'
-                  : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-              }`}
-            >
-              <Settings className="h-6 w-6" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="right" className="bg-popover border-border">
-            <p>Settings</p>
-          </TooltipContent>
-        </Tooltip>
+          {/* Settings */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => handleNavigation('/settings')}
+                className={`h-12 w-12 rounded-xl transition-all duration-300 hover:scale-105 ${
+                  isActive('/settings')
+                    ? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-glow'
+                    : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                }`}
+              >
+                <Settings className="h-6 w-6" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="right" className="bg-popover border-border">
+              <p>Settings</p>
+            </TooltipContent>
+          </Tooltip>
 
-        {/* User Avatar */}
-        <div className="relative">
-          <Avatar className="h-12 w-12 border-2 border-sidebar-accent cursor-pointer hover:scale-110 transition-transform duration-300 shadow-elegant">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback className="bg-primary text-primary-foreground font-bold">JB</AvatarFallback>
-          </Avatar>
-          <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-status-online rounded-full border-2 border-sidebar-background animate-bounce-gentle"></div>
+          {/* User Avatar */}
+          <div className="relative mt-2">
+            <Avatar className="h-12 w-12 border-2 border-sidebar-accent cursor-pointer hover:scale-110 transition-transform duration-300 shadow-elegant">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback className="bg-primary text-primary-foreground font-bold">JB</AvatarFallback>
+            </Avatar>
+            <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-status-online rounded-full border-2 border-sidebar-background animate-bounce-gentle"></div>
+          </div>
         </div>
       </div>
     </TooltipProvider>

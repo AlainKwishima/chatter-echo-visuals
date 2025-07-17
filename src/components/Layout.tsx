@@ -9,7 +9,7 @@ export const Layout = ({ children }: LayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-background overflow-hidden">
       {/* Navigation Sidebar */}
       <div className={`
         fixed md:relative z-50 h-full transition-transform duration-300 ease-in-out
@@ -27,12 +27,12 @@ export const Layout = ({ children }: LayoutProps) => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 max-w-full overflow-hidden">
         {/* Mobile header with hamburger menu */}
-        <div className="md:hidden flex items-center justify-between p-4 border-b border-sidebar-border bg-sidebar-background">
+        <div className="md:hidden flex-shrink-0 flex items-center justify-between p-4 border-b border-sidebar-border bg-sidebar-background text-sidebar-foreground">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-lg hover:bg-sidebar-accent transition-colors"
+            className="p-2 rounded-lg hover:bg-sidebar-accent transition-colors text-sidebar-foreground"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -43,7 +43,7 @@ export const Layout = ({ children }: LayoutProps) => {
         </div>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-auto">
           {children}
         </div>
       </div>
